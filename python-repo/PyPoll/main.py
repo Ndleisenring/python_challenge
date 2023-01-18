@@ -1,6 +1,8 @@
+#import everything we need
 import os
 import csv
 
+#Create our variables including the pathway to our file
 file = os.path.join('Resources','election_data.csv')
 
 candidates_list=[]
@@ -10,6 +12,7 @@ vote_percent_list=[]
 
 count=0
 
+#Create a loop to iterate through the file
 with open (file,newline="") as csvfile:
     reader=csv.reader(csvfile, delimiter=",")
     header=next(reader)
@@ -26,10 +29,12 @@ with open (file,newline="") as csvfile:
         c=(b/count)*100
         vote_percent_list.append(c)
     
+    #Figure out the winner
     winner_vote_count=max(vote_count_list)
     winner=unique_candidates_list[vote_count_list.index(winner_vote_count)]
 
 
+#Print the results to the terminal
 print('---------------------')
 print('ELECTION RESULTS')
 print('---------------------')
@@ -40,6 +45,7 @@ print('---------------------')
 print('THE WINNER IS : '+ winner)
 print('---------------------')
 
+#print the same results to a text file
 with open('election_results.txt','w') as text:
     text.write('---------------------\n')
     text.write('ELECTION RESULTS\n')

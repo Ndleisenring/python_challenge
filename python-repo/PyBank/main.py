@@ -1,6 +1,8 @@
+#import what we need to
 import os
 import csv
 
+#create our variables including a pathway 
 file = os.path.join('Resources','budget_data.csv')
 
 profit=[]
@@ -13,6 +15,7 @@ total_profit=0
 total_change=0
 total_change_profits=0
 
+#create the loop to iterate through the file
 with open (file,newline="") as csvfile:
     reader=csv.reader(csvfile, delimiter=",")
     header=next(reader)
@@ -36,7 +39,7 @@ with open (file,newline="") as csvfile:
         max_date=date[monthly_change.index(max_increase)]
         min_date=date[monthly_change.index(max_decrease)]
 
-
+#Print our results to the terminal
 print('-------------------------------------------')
 print('Financial Analysis')
 print('-------------------------------------------')
@@ -47,6 +50,7 @@ print('Greatest Profit Increase:' + str(max_date)+ "($"+str(max_increase)+')')
 print('Greatest Profit Decrease:' + str(min_date)+ "($"+str(max_decrease)+')')
 print('-------------------------------------------')
 
+#Create a text file with the same results
 with open ('financial_analysis.txt','w') as text:
     text.write('-------------------------------------------')
     text.write('Financial Analysis')
